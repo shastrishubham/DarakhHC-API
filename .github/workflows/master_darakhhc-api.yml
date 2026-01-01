@@ -26,15 +26,14 @@ jobs:
       - name: Create publish folder
         run: mkdir DarakhsHC-API\publish
 
-      - name: Build & Publish
-        run: >
-          msbuild DarakhsHC-API\DarakhsHC-API.csproj
-          /p:Configuration=Release
-          /p:DeployOnBuild=true
-          /p:WebPublishMethod=FileSystem
-          /p:_PackageTempDir=DarakhsHC-API\publish\
-          /p:UseWPP_CopyWebApplication=true
-          /p:PipelineDependsOnBuild=false
+      - name: Build project
+        working-directory: DarakhsHC-API
+        run: msbuild DarakhsHC-API.csproj /p:Configuration=Release
+
+      - name: Prepare publish folder
+        run: |
+          mkdir DarakhsHC-API\publish
+          xcopy DarakhsHC-API\obj\Release\Package\PackageTmp\* DarakhsHC-API\publish\ /E /I /Y
 
       - name: Verify publish folder
         run: dir DarakhsHC-API\publish
@@ -64,6 +63,7 @@ jobs:
           slot-name: Production
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C95786A418449E87E00FDEBEC9FE8A }}
+
 
 
 
