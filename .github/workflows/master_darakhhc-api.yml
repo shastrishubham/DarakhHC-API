@@ -36,6 +36,15 @@ jobs:
           /p:UseWPP_CopyWebApplication=true
           /p:PipelineDependsOnBuild=false
 
+      - name: Debug – list repo tree
+        run: |
+          echo "=== Repo root ==="
+          dir
+          echo "=== DarakhsHC-API ==="
+          dir DarakhsHC-API
+          echo "=== Search for publish folder ==="
+          dir /s /b publish
+
       - name: Verify publish folder
         run: dir DarakhsHC-API\publish
 
@@ -64,6 +73,7 @@ jobs:
           slot-name: Production
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C95786A418449E87E00FDEBEC9FE8A }}
+
 
 
 
