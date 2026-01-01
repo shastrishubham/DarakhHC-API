@@ -23,9 +23,13 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore DarakhsHC-API.sln
 
-      - name: Build project
+      - name: Build & Package project
         working-directory: DarakhsHC-API
-        run: msbuild DarakhsHC-API.csproj /p:Configuration=Release
+        run: >
+          msbuild DarakhsHC-API.csproj
+          /p:Configuration=Release
+          /p:DeployOnBuild=true
+          /p:WebPublishMethod=Package
 
       - name: Prepare publish folder
         run: |
@@ -61,6 +65,7 @@ jobs:
           slot-name: Production
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C95786A418449E87E00FDEBEC9FE8A }}
+
 
 
 
