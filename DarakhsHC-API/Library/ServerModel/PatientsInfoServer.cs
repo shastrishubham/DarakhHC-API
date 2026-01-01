@@ -102,7 +102,7 @@ namespace DarakhsHC_API.Library.ServerModel
             PatientCreationResponse response = new PatientCreationResponse();
 
             // check patient record is already exists
-            if (!isCreateNewRecord)
+            if (!isCreateNewRecord && patientsInfo.Id == 0)
             {
                 bool isPatientAlreadyExistsWithNameOrMobile = mPatientsInfoAccessT.HasPatienAlreadyExists(patientsInfo);
                 if (isPatientAlreadyExistsWithNameOrMobile)
