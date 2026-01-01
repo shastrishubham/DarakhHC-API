@@ -23,14 +23,30 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore DarakhsHC-API.sln
 
-      - name: Build & Publish
-        run: msbuild DarakhsHC-API.sln /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=FileSystem /p:PublishUrl=${{ github.workspace }}\publish /p:SkipInvalidConfigurations=true
+      - name: Build & Package project
+        working-directory: DarakhsHC-API
+        run: >
+          msbuild DarakhsHC-API.csproj
+          /p:Configuration=Release
+          /p:DeployOnBuild=true
+          /p:WebPublishMethod=Package
+
+      - name: Prepare publish folder
+        run: |
+          if (!(Test-Path DarakhsHC-API\publish)) {
+            mkdir DarakhsHC-API\publish
+          }
+          xcopy DarakhsHC-API\obj\Release\Package\PackageTmp\* DarakhsHC-API\publish\ /E /I /Y
+
+      - name: Verify publish folder
+        run: dir DarakhsHC-API\publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: webapp
-          path: publish/**
+          path: DarakhsHC-API\publish
+          if-no-files-found: error
 
   deploy:
     runs-on: windows-latest
@@ -49,5 +65,12 @@ jobs:
           slot-name: Production
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C95786A418449E87E00FDEBEC9FE8A }}
+
+
+
+
+
+
+
 
 
