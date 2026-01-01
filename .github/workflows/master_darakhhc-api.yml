@@ -29,10 +29,12 @@ jobs:
       - name: Build & Publish
         run: >
           msbuild DarakhsHC-API\DarakhsHC-API.csproj
-          /t:Build;PipelinePreDeployCopyAllFilesToOneFolder
           /p:Configuration=Release
+          /p:DeployOnBuild=true
+          /p:WebPublishMethod=FileSystem
           /p:_PackageTempDir=DarakhsHC-API\publish\
           /p:UseWPP_CopyWebApplication=true
+          /p:PipelineDependsOnBuild=false
 
       - name: Verify publish folder
         run: dir publish
@@ -62,6 +64,7 @@ jobs:
           slot-name: Production
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C95786A418449E87E00FDEBEC9FE8A }}
+
 
 
 
