@@ -11,8 +11,8 @@ SELECT patSumm.Id
       ,patSumm.FormDate
       ,patSumm.ReceiptNo
       ,patSumm.MS_Patients_Id
-	  ,pat.FullName,
-	  CAST(pat.Mobile1 AS VARCHAR(20)) + '/' + CAST(pat.Mobile2 AS VARCHAR(20)) AS 'Mobile',
+	  ,pat.FullName
+	  ,CAST(pat.Mobile1 AS VARCHAR(20)) + '/' + CAST(pat.Mobile2 AS VARCHAR(20)) AS 'Mobile'
 	  ,pat.MS_Treament_Id
 	  ,treat.TreamentName
 	  ,pat.AddressLine1

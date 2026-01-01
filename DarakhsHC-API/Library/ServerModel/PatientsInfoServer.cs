@@ -68,12 +68,9 @@ namespace DarakhsHC_API.Library.ServerModel
                 };
             }
 
-            int referenceId = GetOtherReferenceId(appointmentInfo.MS_Comp_Id,
-                appointmentInfo.MS_Reference_Id, appointmentInfo.OtherReferenceName);
-
-            if (referenceId != 0)
+            if(appointmentInfo.MS_Reference_Id ==null || appointmentInfo.MS_Reference_Id == 0)
             {
-                appointmentInfo.MS_Reference_Id = referenceId;
+                appointmentInfo.MS_Reference_Id = 0;
             }
 
             int id = mPatientsInfoAccessT.UpsertPatientAppointment(appointmentInfo);
