@@ -34,11 +34,24 @@ jobs:
           /p:UseWPP_CopyWebApplication=true
           /p:PipelineDependsOnBuild=false
 
+      - name: DEBUG — list workspace
+        run: dir
+
+      - name: DEBUG — list publish folder
+        run: |
+          if (Test-Path publish) {
+            dir publish
+          } else {
+          echo "❌ publish folder does NOT exist"
+          exit 1
+          }
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: webapp
           path: publish/**
+          if-no-files-found: error
 
   deploy:
     runs-on: windows-latest
@@ -57,6 +70,7 @@ jobs:
           slot-name: Production
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C3C95786A418449E87E00FDEBEC9FE8A }}
+
 
 
 
