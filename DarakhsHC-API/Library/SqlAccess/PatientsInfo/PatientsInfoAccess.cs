@@ -830,5 +830,90 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
             {
             }
         }
+
+        public static int UpsertPatientEnquiry(PatientEnquiry patientEnquiry)
+        {
+            try
+            {
+                string sql = PatientsInfo.UpsertPatientEnquiry;
+                string strConString = connString;
+
+                using (SqlConnection con = new SqlConnection(strConString))
+                {
+                    con.Open();
+                    string query = sql;
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@Id", patientEnquiry.Id);
+                    cmd.Parameters.AddWithValue("@MS_Comp_Id", patientEnquiry.MS_Comp_Id);
+                    cmd.Parameters.AddWithValue("@Name", patientEnquiry.Name);
+                    cmd.Parameters.AddWithValue("@EnquiryFor", !string.IsNullOrEmpty(patientEnquiry.EnquiryFor) ? patientEnquiry.EnquiryFor : "");
+                    cmd.Parameters.AddWithValue("@Mobile", patientEnquiry.Mobile > 0 ? patientEnquiry.Mobile : 0);
+                    cmd.Parameters.AddWithValue("@MS_Country_Id", patientEnquiry.MS_Country_Id > 0 ? patientEnquiry.MS_Country_Id : 0);
+                    cmd.Parameters.AddWithValue("@MS_State_Id", patientEnquiry.MS_State_Id > 0 ? patientEnquiry.MS_State_Id : 0);
+                    cmd.Parameters.AddWithValue("@MS_City_Id", patientEnquiry.MS_City_Id > 0 ? patientEnquiry.MS_City_Id : 0);
+                    cmd.Parameters.AddWithValue("@Address", !string.IsNullOrEmpty(patientEnquiry.Address) ? patientEnquiry.Address : "");
+
+                    // cmd.ExecuteNonQuery();
+                    object returnObj = cmd.ExecuteScalar();
+
+                    if (returnObj != null)
+                    {
+                        Int32.TryParse(returnObj.ToString(), out int returnValue);
+                        return returnValue;
+                    }
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public static List<PatientEnquiry> GetPatientEnquiriesByDate(int compId, DateTime fromEnquiryDt, DateTime toEnquiryDt)
+        {
+            List<PatientEnquiry> patientEnquiries = new List<PatientEnquiry>();
+            string strConString = connString;
+
+            using (var connection = new SqlConnection(strConString))
+            {
+                connection.Open();
+                string sql = PatientsInfo.GetPatientEquiriesByDate;
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@MS_Comp_Id", compId);
+                    command.Parameters.AddWithValue("@FromDate", fromEnquiryDt.Date);
+                    command.Parameters.AddWithValue("@ToDate", toEnquiryDt.Date);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var patientEnquiry= new PatientEnquiry
+                            {
+                                Id = Convert.ToInt32(reader["Id"].ToString()),
+                                FormDate = reader["FormDate"] != DBNull.Value ? Convert.ToDateTime(reader["FormDate"].ToString()) : DateTime.MinValue,
+                                MS_Comp_Id = reader["MS_Comp_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_Comp_Id"].ToString()) : 0,
+                                Name = reader["Name"] != DBNull.Value ? reader["Name"].ToString() : null,
+                                Mobile = reader["Mobile"] != DBNull.Value ? Convert.ToDecimal(reader["Mobile"].ToString()) : 0,
+                                EnquiryFor = reader["EnquiryFor"] != DBNull.Value ? reader["EnquiryFor"].ToString() : string.Empty,
+                                Address = reader["Address"] != DBNull.Value ? reader["Address"].ToString() : null,
+                                MS_Country_Id = reader["MS_Country_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_Country_Id"].ToString()) : 0,
+                                CountryName = reader["CountryName"] != DBNull.Value ? reader["CountryName"].ToString() : string.Empty,
+                                MS_State_Id = reader["MS_State_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_State_Id"].ToString()) : 0,
+                                StateName = reader["StateName"] != DBNull.Value ? reader["StateName"].ToString() : string.Empty,
+                                MS_City_Id = reader["MS_City_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_City_Id"].ToString()) : 0,
+                                CityName = reader["CityName"] != DBNull.Value ? reader["CityName"].ToString() : string.Empty
+                            };
+                            patientEnquiries.Add(patientEnquiry);
+                        }
+                    }
+                }
+            }
+
+            return patientEnquiries;
+        }
     }
 }

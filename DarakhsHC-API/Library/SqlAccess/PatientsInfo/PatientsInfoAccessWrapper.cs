@@ -97,5 +97,15 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
         {
             return PatientsInfoAccess.GetPatientsFollowUpDateByDate(compId, date);
         }
+
+        public int UpsertPatientEnquiry(PatientEnquiry patientEnquiry)
+        {
+            return PatientsInfoAccess.UpsertPatientEnquiry(patientEnquiry);
+        }
+
+        public List<PatientEnquiry> GetPatientEnquiriesByDate(int compId, DateTime fromEnquiryDt, DateTime toEnquiryDt)
+        {
+            return PatientsInfoAccess.GetPatientEnquiriesByDate(compId, fromEnquiryDt, toEnquiryDt);
+        }
     }
 }

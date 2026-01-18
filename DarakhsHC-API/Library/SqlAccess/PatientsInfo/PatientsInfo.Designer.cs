@@ -152,6 +152,40 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo {
         
         /// <summary>
         ///   Looks up a localized string similar to 
+        ///
+        ////*
+        ///
+        ///---GetPatientEquiriesByDate.Sql
+        ///
+        ///DECLARE @MS_Comp_Id INT = 1
+        ///DECLARE @FromDate DATETIME2 = &apos;2023-01-01&apos;
+        ///DECLARE @ToDate   DATETIME2 = &apos;2025-12-31&apos;
+        ///*/
+        ///
+        ///SELECT patEnq.Id
+        ///      ,Formdate
+        ///      ,MS_Comp_Id
+        ///      ,Name
+        ///      ,Mobile
+        ///      ,EnquiryFor
+        ///      ,Address
+        ///      ,patEnq.MS_Country_Id
+        ///	  ,country.CountryName
+        ///      ,patEnq.MS_State_Id
+        ///	  ,state.StateName
+        ///      ,patEnq.MS_City_Id
+        ///	  ,city.CityName
+        ///  FROM Patient_Enquiry AS patEnq
+        ///	LEFT JOIN MS_Country AS country ON country.Id [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GetPatientEquiriesByDate {
+            get {
+                return ResourceManager.GetString("GetPatientEquiriesByDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
         ////*
         ///
         ////****** Script for GetPatientsAppointments.Sql  ******/
@@ -324,12 +358,12 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo {
         ///      ,patSumm.FormDate
         ///      ,patSumm.ReceiptNo
         ///      ,patSumm.MS_Patients_Id
-        ///	  ,pat.FullName,
-        ///	  CAST(pat.Mobile1 AS VARCHAR(20)) + &apos;/&apos; + CAST(pat.Mobile2 AS VARCHAR(20)) AS &apos;Mobile&apos;,
+        ///	  ,pat.FullName
+        ///	  ,CAST(pat.Mobile1 AS VARCHAR(20)) + &apos;/&apos; + CAST(pat.Mobile2 AS VARCHAR(20)) AS &apos;Mobile&apos;
         ///	  ,pat.MS_Treament_Id
         ///	  ,treat.TreamentName
         ///	  ,pat.AddressLine1
-        ///	  ,pat.AddressL [rest of string was truncated]&quot;;.
+        ///	  ,pat.AddressLi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetPatientsSummaries {
             get {
@@ -456,6 +490,39 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo {
         internal static string InsertPatientHistory {
             get {
                 return ResourceManager.GetString("InsertPatientHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///
+        ///
+        ////*
+        ///
+        ///--UpsertPatientEnquiry.Sql
+        ///
+        ///--select * from Patient_Enquiry
+        ///
+        ///DECLARE @Id							INT = 6005;
+        ///DECLARE @MS_Comp_Id					INT = 1;
+        ///DECLARE @Name						NVARCHAR(MAX) = &apos;ABCD&apos;;
+        ///DECLARE @Mobile					DECIMAL(12,0) = 8454434339;
+        ///DECLARE @EnquiryFor					NVARCHAR(MAX) = &apos;EnquiryFor&apos;;
+        ///DECLARE @Address				NVARCHAR(MAX) = &apos;Address&apos;;
+        ///DECLARE @MS_City_Id					INT = 1;
+        ///DECLARE @MS_State_Id				INT = 1;
+        ///DECLARE @MS_Country_Id			INT = 1;
+        ///
+        ///*/
+        ///
+        ///
+        ///
+        ///MERGE INTO Patient_Enquiry AS TARGET
+        ///USING (SELECT @Id as  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UpsertPatientEnquiry {
+            get {
+                return ResourceManager.GetString("UpsertPatientEnquiry", resourceCulture);
             }
         }
         

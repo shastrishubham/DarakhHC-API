@@ -169,4 +169,10 @@
   <data name="GetPatientsFollowUpListByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\getpatientsfollowuplistbydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="GetPatientEquiriesByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getpatientequiriesbydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="UpsertPatientEnquiry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\upsertpatientenquiry.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

@@ -116,6 +116,20 @@ namespace DarakhsHC_API.Controllers
             return PatientsInfoServer.GetPatientHistoriesById(compId, patientId);
         }
 
+        [Route("api/PatientsInfo/UpsertPatientEnquiry")]
+        [HttpPost]
+        public int UpsertPatientEnquiry(PatientEnquiry patientEnquiry)
+        {
+            return PatientsInfoServer.UpsertPatientEnquiry(patientEnquiry);
+        }
+
+        [Route("api/PatientsInfo/GetPatientEnquiriesByDate")]
+        [HttpGet]
+        public List<PatientEnquiry> GetPatientEnquiriesByDate(int compId, DateTime fromEnquiryDt, DateTime toEnquiryDt)
+        {
+            return PatientsInfoServer.GetPatientEnquiriesByDate(compId, fromEnquiryDt, toEnquiryDt);
+        }
+
         #region Master APIs
         [Route("api/PatientsInfo/GetTreatments")]
         [HttpGet]

@@ -238,6 +238,7 @@
     <Compile Include="Library\Models\ItemSerialNosInfo.cs" />
     <Compile Include="Library\Models\ItemInfo.cs" />
     <Compile Include="Library\Models\MonthlyStatsDto.cs" />
+    <Compile Include="Library\Models\PatientEnquiry.cs" />
     <Compile Include="Library\Models\PatientHistory.cs" />
     <Compile Include="Library\Models\PatientInventoryInfo.cs" />
     <Compile Include="Library\Models\PatientsAppointmentInfo.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\CheckSameDayAppointment.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\GetPatientsFollowUpListByDate.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\GetPatientsSummaries.Sql" />
+    <Content Include="Library\SqlAccess\PatientsInfo\Sql\GetPatientEquiriesByDate.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\HasPatientExists.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\GetExistingPatientsInfoByValue.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\GetPatientsInfoByDate.Sql" />
@@ -302,6 +304,7 @@
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\GetPatientsAppointments.Sql" />
     <Content Include="Library\SqlAccess\MastersInfo\Sql\UpsertReference.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\InsertPatientHistory.Sql" />
+    <Content Include="Library\SqlAccess\PatientsInfo\Sql\UpsertPatientEnquiry.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\UpsertPatientSummary.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\UpsertPatientsAppointment.Sql" />
     <Content Include="Library\SqlAccess\PatientsInfo\Sql\UpsertPatients.Sql" />

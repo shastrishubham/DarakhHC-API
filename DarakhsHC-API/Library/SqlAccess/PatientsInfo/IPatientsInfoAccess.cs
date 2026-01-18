@@ -60,5 +60,14 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
         List<PatientsSummaryInfo> GetPatientsFollowUpDateByDate(int compId, DateTime date);
 
         #endregion
+
+        #region PatientEnquiry
+
+        int UpsertPatientEnquiry(PatientEnquiry patientEnquiry);
+
+        List<PatientEnquiry> GetPatientEnquiriesByDate(int compId, DateTime fromEnquiryDt, DateTime toEnquiryDt);
+
+        #endregion
+
     }
 }
