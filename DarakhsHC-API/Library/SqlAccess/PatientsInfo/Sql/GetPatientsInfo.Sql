@@ -35,6 +35,7 @@ SELECT
 	  ,users.FullName AS UserFullName
 	  ,patient.Remark
 	  ,patient.VisitDate
+	  ,patient.Gender
  FROM MS_Patients AS patient
 	LEFT JOIN MS_City AS city ON patient.MS_City_Id = city.Id
 	LEFT JOIN MS_State AS state ON patient.MS_State_Id = state.Id

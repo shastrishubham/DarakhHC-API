@@ -22,6 +22,7 @@ DECLARE @MS_City_Id					INT = 1;
 DECLARE @MS_State_Id				INT = 1;
 DECLARE @PostalCode					DECIMAL(7,0) = 431001;
 DECLARE @MaritialStatus				NVARCHAR(50) = 'Single'
+DECLARE @Gender						CHAR(1) = 'M'
 DECLARE @MS_Reference_Id			INT = 1;
 DECLARE @MS_Treament_Id				INT = 1;
 DECLARE @MS_User_Id					INT = 1;
@@ -51,6 +52,7 @@ WHEN MATCHED THEN
       ,MS_Treament_Id		= @MS_Treament_Id
 	  ,Remark				= @Remark
 	  ,VisitDate			= GETDATE()
+	  ,Gender				= @Gender
 
 
 WHEN NOT MATCHED THEN
@@ -70,6 +72,7 @@ WHEN NOT MATCHED THEN
 			,MS_State_Id
 			,PostalCode
 			,MaritialStatus
+			,Gender
 			,MS_Reference_Id
 			,MS_Treament_Id
 			,MS_User_Id
@@ -93,6 +96,7 @@ WHEN NOT MATCHED THEN
 			,@MS_State_Id
 			,@PostalCode
 			,@MaritialStatus
+			,@Gender
 			,@MS_Reference_Id
 			,@MS_Treament_Id
 			,@MS_User_Id

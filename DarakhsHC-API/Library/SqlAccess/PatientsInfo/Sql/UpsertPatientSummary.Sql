@@ -11,6 +11,7 @@ DECLARE @Notes NVARCHAR(MAX) = 'Notes';
 DECLARE @NextVisitDate DATETIME = '2026-01-10';
 DECLARE @IsFollowUpReq BIT = 1;
 DECLARE @FollowUpDdate DATETIME = '2025-12-25';
+DECLARE @Amount DECIMAL(18, 5) = 0;
 */
 
 ------------------------------------------------------------
@@ -44,6 +45,7 @@ CREATE TABLE #SummaryResult
 		NULLIF(@NextVisitDate, '1900-01-01') AS NextVisitDate,
         @IsFollowUpReq AS IsFollowUpReq,
 		NULLIF(@FollowUpDdate, '1900-01-01') AS FollowUpDdate,
+		@Amount AS Amount,
         P.FullName,
         P.Mobile1
     FROM MS_Patients P
@@ -68,6 +70,7 @@ WHEN MATCHED THEN
         , IsFollowUpReq     = SOURCE.IsFollowUpReq
         , FollowUpDdate     = ISNULL(SOURCE.FollowUpDdate, TARGET.FollowUpDdate)
         , FormDate          = GETDATE()
+		,Amount				= SOURCE.Amount
 
 WHEN NOT MATCHED THEN
     INSERT (
@@ -81,6 +84,7 @@ WHEN NOT MATCHED THEN
         , NextVisitDate
         , IsFollowUpReq
         , FollowUpDdate
+		,Amount
     )
     VALUES (
           GETDATE()
@@ -93,6 +97,7 @@ WHEN NOT MATCHED THEN
 		,NULLIF(SOURCE.NextVisitDate, '1900-01-01')
         , SOURCE.IsFollowUpReq
         ,NULLIF(SOURCE.FollowUpDdate, '1900-01-01')
+		,SOURCE.Amount
     )
 
 ------------------------------------------------------------

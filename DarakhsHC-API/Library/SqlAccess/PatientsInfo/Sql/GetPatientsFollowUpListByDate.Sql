@@ -28,7 +28,8 @@ select
 		patsum.NextVisitDate,
 		pat.MS_Reference_Id,
 		ref.Reference,
-		patsum.FollowUpDdate
+		patsum.FollowUpDdate,
+		ISNULL(patsum.Amount, 0) AS Amount
 	from Patients_Summary AS patsum
 		INNER JOIN MS_Patients AS pat ON pat.Id = patsum.MS_Patients_Id
 		LEFT JOIN MS_City AS city ON city.Id = pat.MS_City_Id

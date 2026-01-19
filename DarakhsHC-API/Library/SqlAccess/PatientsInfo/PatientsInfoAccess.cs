@@ -95,14 +95,25 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                     reader.NextResult();
                     while (reader.Read())
                     {
-                        response.TreatmentsMonthlyStatsDto.Add(new TreatmentsMonthlyStatsDto
+                        var tms = new TreatmentsMonthlyStatsDto
                         {
                             MonthName = reader["MonthName"].ToString(),
                             MonthNumber = Convert.ToInt32(reader["MonthNumber"]),
                             YearNumber = Convert.ToInt32(reader["YearNumber"]),
-                            HearingCount = Convert.ToInt32(reader["HearingCount"]),
-                            SpeakingCount = Convert.ToInt32(reader["SpeakingCount"])
-                        });
+                            TreatmentCounts = new Dictionary<string, int>()
+                        };
+
+                        // Loop over all columns except MonthName, MonthNumber, YearNumber
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string colName = reader.GetName(i);
+                            if (colName != "MonthName" && colName != "MonthNumber" && colName != "YearNumber")
+                            {
+                                tms.TreatmentCounts[colName] = Convert.ToInt32(reader[i]);
+                            }
+                        }
+
+                        response.TreatmentsMonthlyStatsDto.Add(tms);
                     }
 
                     /* ===============================
@@ -271,6 +282,7 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                     cmd.Parameters.AddWithValue("@MS_State_Id", patientsInfo.MS_State_Id != 0 ? patientsInfo.MS_State_Id : 0);
                     cmd.Parameters.AddWithValue("@PostalCode", patientsInfo.PostalCode > 0 ? patientsInfo.PostalCode : 0);
                     cmd.Parameters.AddWithValue("@MaritialStatus", !string.IsNullOrEmpty(patientsInfo.MaritialStatus) ? patientsInfo.MaritialStatus : "");
+                    cmd.Parameters.AddWithValue("@Gender", patientsInfo.Gender.HasValue ? (object)patientsInfo.Gender.Value : DBNull.Value);
                     cmd.Parameters.AddWithValue("@MS_Reference_Id", patientsInfo.MS_Reference_Id);
                     cmd.Parameters.AddWithValue("@MS_Treament_Id", patientsInfo.MS_Treament_Id);
                     cmd.Parameters.AddWithValue("@MS_User_Id", patientsInfo.MS_User_Id);
@@ -376,6 +388,7 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                 StateName = reader["StateName"] != DBNull.Value ? reader["StateName"].ToString() : null,
                 PostalCode = reader["PostalCode"] != DBNull.Value ? Convert.ToDouble(reader["PostalCode"].ToString()) : 0,
                 MaritialStatus = reader["MaritialStatus"] != DBNull.Value ? reader["MaritialStatus"].ToString() : null,
+                Gender = reader["Gender"] != DBNull.Value ? Convert.ToChar(reader["Gender"].ToString()) : (char?)null,
                 MS_Reference_Id = reader["MS_Reference_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_Reference_Id"].ToString()) : 0,
                 Reference = reader["Reference"] != DBNull.Value ? reader["Reference"].ToString() : null,
                 MS_Treament_Id = reader["MS_Treament_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_Treament_Id"].ToString()) : 0,
@@ -383,7 +396,7 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                 MS_User_Id = reader["MS_User_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_User_Id"].ToString()) : 0,
                 UserFullName = reader["UserFullName"] != DBNull.Value ? reader["UserFullName"].ToString() : null,
                 Remark = reader["Remark"] != DBNull.Value ? reader["Remark"].ToString() : null,
-                VisitDate = reader["VisitDate"] != DBNull.Value ? Convert.ToDateTime(reader["VisitDate"].ToString()) : DateTime.MinValue,
+                VisitDate = reader["VisitDate"] != DBNull.Value ? Convert.ToDateTime(reader["VisitDate"].ToString()) : DateTime.MinValue
             };
             patientsInfo.Add(info);
         }
@@ -413,6 +426,7 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                     cmd.Parameters.Add("@NextVisitDate", SqlDbType.DateTime).Value = patientsSummary.NextVisitDate.HasValue ? patientsSummary.NextVisitDate.Value : (object)DBNull.Value;
                     cmd.Parameters.AddWithValue("@IsFollowUpReq", patientsSummary.IsFollowUpReq);
                     cmd.Parameters.Add("@FollowUpDdate", SqlDbType.DateTime).Value = patientsSummary.FollowUpDate.HasValue ? patientsSummary.FollowUpDate.Value : (object)DBNull.Value;
+                    cmd.Parameters.AddWithValue("@Amount", patientsSummary.Amount);
 
                     // cmd.ExecuteNonQuery();
                     object returnObj = cmd.ExecuteScalar();
@@ -478,7 +492,9 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                                 Notes = reader["Notes"] != DBNull.Value ? reader["Notes"].ToString() : null,
                                 NextVisitDate = reader["NextVisitDate"] != DBNull.Value ? Convert.ToDateTime(reader["NextVisitDate"].ToString()) : (DateTime?)null,
                                 IsFollowUpReq = reader["IsFollowUpReq"] != DBNull.Value ? Convert.ToBoolean(reader["IsFollowUpReq"].ToString()) : false,
-                                FollowUpDate = reader["FollowUpDdate"] != DBNull.Value ? Convert.ToDateTime(reader["FollowUpDdate"]).Date : (DateTime?)null
+                                FollowUpDate = reader["FollowUpDdate"] != DBNull.Value ? Convert.ToDateTime(reader["FollowUpDdate"]).Date : (DateTime?)null,
+                                Amount = reader["Amount"] != DBNull.Value ? Convert.ToDecimal(reader["Amount"].ToString()) : 0,
+                                Gender = reader["Gender"] != DBNull.Value ? Convert.ToChar(reader["Gender"].ToString()) : (char?)null,
                             };
                             patientsSummaries.Add(summaryInfo);
                         }
@@ -527,7 +543,8 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                                 NextVisitDate = reader["NextVisitDate"] != DBNull.Value ? Convert.ToDateTime(reader["NextVisitDate"].ToString()) : (DateTime?)null,
                                 MS_Reference_Id = reader["MS_Reference_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_Reference_Id"].ToString()) : 0,
                                 Reference = reader["Reference"] != DBNull.Value ? reader["Reference"].ToString() : null,
-                                FollowUpDate = reader["FollowUpDdate"] != DBNull.Value ? Convert.ToDateTime(reader["FollowUpDdate"]).Date : (DateTime?)null
+                                FollowUpDate = reader["FollowUpDdate"] != DBNull.Value ? Convert.ToDateTime(reader["FollowUpDdate"]).Date : (DateTime?)null,
+                                Amount = reader["Amount"] != DBNull.Value ? Convert.ToDecimal(reader["Amount"].ToString()) : 0,
                             };
                             patientsSummaries.Add(summaryInfo);
                         }
@@ -716,7 +733,8 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                                 TreamentName = reader["TreamentName"] != DBNull.Value ? reader["TreamentName"].ToString() : null,
                                 MS_User_Id = reader["MS_User_Id"] != DBNull.Value ? Convert.ToInt32(reader["MS_User_Id"].ToString()) : 0,
                                 UserFullName = reader["UserFullName"] != DBNull.Value ? reader["UserFullName"].ToString() : null,
-                                IsSummaryGenerated = reader["IsSummaryGenerated"] != DBNull.Value ? reader["IsSummaryGenerated"].ToString() : null
+                                IsSummaryGenerated = reader["IsSummaryGenerated"] != DBNull.Value ? reader["IsSummaryGenerated"].ToString() : null,
+                                Gender = reader["Gender"] != DBNull.Value ? Convert.ToChar(reader["Gender"].ToString()) : (char?)null,
                             };
                             patientsInfo.Add(info);
                         }
@@ -763,6 +781,8 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
                                 VisitDate = reader["VisitDate"] != DBNull.Value ? Convert.ToDateTime(reader["VisitDate"].ToString()) : DateTime.MinValue,
                                 Note = reader["Notes"] != DBNull.Value ? reader["Notes"].ToString() : null,
                                 NextVisitDate = reader["NextVisitDate"] != DBNull.Value ? Convert.ToDateTime(reader["NextVisitDate"].ToString()) : DateTime.MinValue,
+                                Amount = reader["Amount"] != DBNull.Value ? Convert.ToDecimal(reader["Amount"].ToString()) : 0,
+                                Gender = reader["Gender"] != DBNull.Value ? Convert.ToChar(reader["Gender"].ToString()) : (char?)null,
                             };
                             patientHistories.Add(info);
                         }

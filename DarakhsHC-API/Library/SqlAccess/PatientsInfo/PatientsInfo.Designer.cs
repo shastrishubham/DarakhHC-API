@@ -594,10 +594,10 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo {
         ///DECLARE @NextVisitDate DATETIME = &apos;2026-01-10&apos;;
         ///DECLARE @IsFollowUpReq BIT = 1;
         ///DECLARE @FollowUpDdate DATETIME = &apos;2025-12-25&apos;;
+        ///DECLARE @Amount DECIMAL(18, 5) = 0;
         ///*/
         ///
-        ///------------------------------------------------------------
-        ///-- CREATE TEMP TABLE  [rest of string was truncated]&quot;;.
+        ///---------------------------------------------- [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string UpsertPatientSummary {
             get {

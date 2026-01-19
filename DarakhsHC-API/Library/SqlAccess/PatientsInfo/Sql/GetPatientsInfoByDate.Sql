@@ -33,6 +33,7 @@ SELECT DISTINCT
 	  ,treatment.TreamentName
       ,patient.MS_User_Id
 	  ,users.FullName AS UserFullName
+	  ,patient.Gender
 	 ,CASE 
 			WHEN summary.Id IS NULL THEN 0
 			ELSE 1

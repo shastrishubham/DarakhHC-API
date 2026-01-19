@@ -34,6 +34,7 @@ SELECT
 	  ,state.StateName
       ,patient.PostalCode
       ,patient.MaritialStatus
+	  ,patient.Gender
       ,patient.MS_Reference_Id
 	  ,reference.Reference
       ,patient.MS_Treament_Id

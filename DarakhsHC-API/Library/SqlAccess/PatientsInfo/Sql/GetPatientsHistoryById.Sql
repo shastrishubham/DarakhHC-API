@@ -22,6 +22,8 @@ SELECT psummary.Id
       ,psummary.Remark
       ,psummary.Notes
       ,psummary.NextVisitDate
+	  ,ISNULL(psummary.Amount, 0) AS 'Amount'
+	  ,patients.Gender
   FROM Patients_Summary AS psummary
 	INNER JOIN MS_Patients AS patients ON psummary.MS_Patients_Id = patients.Id 
 	LEFT JOIN MS_Reference AS reference ON patients.MS_Reference_Id = reference.Id

@@ -28,6 +28,8 @@ SELECT patSumm.Id
       ,patSumm.NextVisitDate
       ,patSumm.IsFollowUpReq
       ,patSumm.FollowUpDdate
+	  ,ISNULL(patSumm.Amount, 0) AS 'Amount'
+	  ,pat.Gender
   FROM Patients_Summary AS patSumm
 	INNER JOIN MS_Patients AS pat ON pat.Id = patSumm.MS_Patients_Id
 	INNER JOIN MS_Treament AS treat ON pat.MS_Treament_Id = treat.Id

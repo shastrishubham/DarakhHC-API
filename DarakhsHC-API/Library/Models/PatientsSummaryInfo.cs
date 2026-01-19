@@ -26,6 +26,8 @@ namespace DarakhsHC_API.Library.Models
         public DateTime? NextVisitDate { get; set; }
         public bool IsFollowUpReq { get; set; }
         public DateTime? FollowUpDate { get; set; }
+        public char? Gender { get; set; }
+        public decimal Amount { get; set; }
 
         public int MS_Reference_Id { get; set; }
         public string Reference { get; set; }

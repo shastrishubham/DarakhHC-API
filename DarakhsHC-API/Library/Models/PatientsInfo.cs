@@ -22,6 +22,7 @@ namespace DarakhsHC_API.Library.Models
         public string StateName { get; set; }
         public double PostalCode { get; set; }
         public string MaritialStatus { get; set; }
+        public char? Gender { get; set; }
         public int MS_Reference_Id { get; set; }
         public string Reference { get; set; }
         public int MS_Treament_Id { get; set; }

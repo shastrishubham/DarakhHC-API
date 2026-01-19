@@ -133,23 +133,11 @@
   <data name="UpsertPatientsAppointment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\upsertpatientsappointment.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="GetExistingPatientsInfoByValue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\getexistingpatientsinfobyvalue.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="GetPatientsInfoByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\getpatientsinfobydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="InsertPatientHistory" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\insertpatienthistory.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="GetPatientsAppointments" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\getpatientsappointments.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="GetPatientsInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\getpatientsinfo.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="GetPatientsSummaries" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\getpatientssummaries.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="HasPatientExists" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\haspatientexists.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -157,22 +145,34 @@
   <data name="CheckSameDayAppointment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\checksamedayappointment.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="GetPatientEquiriesByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getpatientequiriesbydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="UpsertPatientEnquiry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\upsertpatientenquiry.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="GetPatientsInfoByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getpatientsinfobydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="GetExistingPatientsInfoByValue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getexistingpatientsinfobyvalue.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="GetPatientsFollowUpListByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getpatientsfollowuplistbydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="GetPatientsHistoryById" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\getpatientshistorybyid.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="GetPatientsInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getpatientsinfo.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="GetPatientsSummaries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>sql\getpatientssummaries.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="UpsertPatients" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\upsertpatients.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="UpsertPatientSummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\upsertpatientsummary.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="GetPatientsFollowUpListByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\getpatientsfollowuplistbydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="GetPatientEquiriesByDate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\getpatientequiriesbydate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="UpsertPatientEnquiry" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\upsertpatientenquiry.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

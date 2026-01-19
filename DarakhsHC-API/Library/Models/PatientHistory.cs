@@ -21,5 +21,7 @@ namespace DarakhsHC_API.Library.Models
         public string Description { get; set; }
         public string Note { get; set; }
         public DateTime NextVisitDate { get; set; }
+        public decimal Amount { get; set; }
+        public char? Gender { get; set; }
     }
 }
