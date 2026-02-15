@@ -28,4 +28,9 @@ SELECT patEnq.Id
 	LEFT JOIN MS_City AS city ON city.Id = patEnq.MS_City_Id
   WHERE patEnq.MS_Comp_Id = @MS_Comp_Id
   AND CAST(patEnq.Formdate AS DATE) BETWEEN CAST(@FromDate AS date) AND CAST(@ToDate AS date)
+  AND NOT EXISTS (
+        SELECT 1
+        FROM Patients_Appointment appt
+        WHERE appt.Patient_Enquiry_Id = patEnq.Id   -- ⚠️ change column if different
+  )
 ORDER BY patEnq.Formdate DESC;

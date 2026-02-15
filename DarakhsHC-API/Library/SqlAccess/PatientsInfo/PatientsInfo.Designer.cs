@@ -19,7 +19,7 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class PatientsInfo {
@@ -560,19 +560,16 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo {
         ///
         ///--select * from Patients_Appointment
         ///
-        ///DECLARE @Id					INT = 1;
-        ///DECLARE @FormDate			DATETIME = GETDATE();
-        ///DECLARE @MS_Comp_Id			INT = 1;
-        ///DECLARE @PatientsName		NVARCHAR(MAX) = &apos;ABCD&apos;;
-        ///DECLARE @EnquiryFor			NVARCHAR(MAX) = &apos;ABCDE&apos;;
-        ///DECLARE @Mobile				DECIMAL(15,0) = 8454434339;
-        ///DECLARE @AppointmentDate	DATETIME = DATEADD(DAY,1, GETDATE());
-        ///DECLARE @MS_Reference_Id	INT = 1;
-        ///DECLARE @Address			NVARCHAR(MAX) = &apos;Address&apos;;
-        ///
-        ///*/
-        ///
-        ///IF(@AppointmentDate &lt; GETDATE()) [rest of string was truncated]&quot;;.
+        ///DECLARE @Id								INT = 1;
+        ///DECLARE @FormDate						DATETIME = GETDATE();
+        ///DECLARE @MS_Comp_Id						INT = 1;
+        ///DECLARE @Patient_Enquiry_Id				INT = 1;
+        ///DECLARE @PatientsName					NVARCHAR(MAX) = &apos;ABCD&apos;;
+        ///DECLARE @EnquiryFor						NVARCHAR(MAX) = &apos;ABCDE&apos;;
+        ///DECLARE @Mobile							DECIMAL(15,0) = 8454434339;
+        ///DECLARE @AppointmentDate				DATETIME = DATEADD(DAY,1, GETDATE());
+        ///DECLARE @MS_Reference_Id				INT = 1;
+        ///DECLARE @Address						 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string UpsertPatientsAppointment {
             get {

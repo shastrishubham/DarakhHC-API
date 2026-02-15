@@ -130,9 +130,6 @@
   <data name="GetTreatments" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\gettreatments.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="UpsertPatientsAppointment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>sql\upsertpatientsappointment.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="InsertPatientHistory" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\insertpatienthistory.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -174,5 +171,8 @@
   </data>
   <data name="UpsertPatientSummary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>sql\upsertpatientsummary.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="UpsertPatientsAppointment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Sql\UpsertPatientsAppointment.Sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

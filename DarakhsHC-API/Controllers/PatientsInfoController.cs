@@ -61,9 +61,17 @@ namespace DarakhsHC_API.Controllers
 
         [Route("api/PatientsInfo/GetPatientInfo")]
         [HttpGet]
-        public List<Library.Models.PatientsInfo> GetPatientInfo(int CompanyId, DateTime fromDt, DateTime toDt)
+        public List<Library.Models.PatientsInfo> GetPatientInfo(int CompanyId, DateTime fromDt, DateTime toDt, int referenceId = 0)
         {
-            return PatientsInfoServer.GetPatientInfo(CompanyId, fromDt.Date, toDt.Date);
+            return PatientsInfoServer.GetPatientInfo(CompanyId, fromDt.Date, toDt.Date, referenceId);
+        }
+
+        [Route("api/PatientsInfo/GetPatientInfoWithTreamentFilter")]
+        [HttpGet]
+        public List<Library.Models.PatientsInfo> GetPatientInfoWithTreamentFilter(int CompanyId, DateTime fromDt, 
+            DateTime toDt, int treatmentId = 0)
+        {
+            return PatientsInfoServer.GetPatientInfoWithTreamentFilter(CompanyId, fromDt.Date, toDt.Date, treatmentId);
         }
 
 

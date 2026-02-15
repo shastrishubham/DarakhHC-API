@@ -4,15 +4,16 @@
 
 --select * from Patients_Appointment
 
-DECLARE @Id					INT = 1;
-DECLARE @FormDate			DATETIME = GETDATE();
-DECLARE @MS_Comp_Id			INT = 1;
-DECLARE @PatientsName		NVARCHAR(MAX) = 'ABCD';
-DECLARE @EnquiryFor			NVARCHAR(MAX) = 'ABCDE';
-DECLARE @Mobile				DECIMAL(15,0) = 8454434339;
-DECLARE @AppointmentDate	DATETIME = DATEADD(DAY,1, GETDATE());
-DECLARE @MS_Reference_Id	INT = 1;
-DECLARE @Address			NVARCHAR(MAX) = 'Address';
+DECLARE @Id								INT = 1;
+DECLARE @FormDate						DATETIME = GETDATE();
+DECLARE @MS_Comp_Id						INT = 1;
+DECLARE @Patient_Enquiry_Id				INT = 1;
+DECLARE @PatientsName					NVARCHAR(MAX) = 'ABCD';
+DECLARE @EnquiryFor						NVARCHAR(MAX) = 'ABCDE';
+DECLARE @Mobile							DECIMAL(15,0) = 8454434339;
+DECLARE @AppointmentDate				DATETIME = DATEADD(DAY,1, GETDATE());
+DECLARE @MS_Reference_Id				INT = 1;
+DECLARE @Address						NVARCHAR(MAX) = 'Address';
 
 */
 
@@ -42,6 +43,7 @@ WHEN NOT MATCHED THEN
         INSERT (
 			 FormDate
 			,MS_Comp_Id
+			,Patient_Enquiry_Id
 			,PatientsName
 			,EnquiryFor
 			,Mobile
@@ -53,6 +55,7 @@ WHEN NOT MATCHED THEN
            (
 			 GETDATE()
 			,@MS_Comp_Id
+			,@Patient_Enquiry_Id
 			,@PatientsName
 			,@EnquiryFor
 			,@Mobile

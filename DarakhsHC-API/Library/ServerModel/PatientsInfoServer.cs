@@ -159,9 +159,30 @@ namespace DarakhsHC_API.Library.ServerModel
             return referenceId;
         }
 
-        public static List<Library.Models.PatientsInfo> GetPatientInfo(int CompanyId, DateTime fromDt, DateTime toDt)
+        public static List<Library.Models.PatientsInfo> GetPatientInfo(int CompanyId, DateTime fromDt, 
+            DateTime toDt, int referenceId = 0)
         {
-            return mPatientsInfoAccessT.GetPatientInfo(CompanyId, fromDt, toDt);
+            List<Library.Models.PatientsInfo> patients = mPatientsInfoAccessT.GetPatientInfo(CompanyId, fromDt, toDt);
+
+            if(referenceId > 0)
+            {
+                patients = patients.Where(x => x.MS_Reference_Id == referenceId).ToList();
+            }
+
+            return patients;
+        }
+
+        public static List<Library.Models.PatientsInfo> GetPatientInfoWithTreamentFilter(int CompanyId, DateTime fromDt,
+          DateTime toDt, int treatmentId = 0)
+        {
+            List<Library.Models.PatientsInfo> patients = mPatientsInfoAccessT.GetPatientInfo(CompanyId, fromDt, toDt);
+
+            if (treatmentId > 0)
+            {
+                patients = patients.Where(x => x.MS_Treament_Id == treatmentId).ToList();
+            }
+
+            return patients;
         }
 
         public static List<PatientsSummaryInfo> GetPatientsFollowUpDateByDate(int compId, DateTime date)

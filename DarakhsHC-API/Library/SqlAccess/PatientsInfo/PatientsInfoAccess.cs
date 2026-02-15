@@ -152,6 +152,7 @@ namespace DarakhsHC_API.Library.SqlAccess.PatientsInfo
 
                     cmd.Parameters.AddWithValue("@Id", appointmentInfo.Id);
                     cmd.Parameters.AddWithValue("@FormDate", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@Patient_Enquiry_Id", appointmentInfo.Patient_Enquiry_Id);
                     cmd.Parameters.AddWithValue("@MS_Comp_Id", appointmentInfo.MS_Comp_Id);
                     cmd.Parameters.AddWithValue("@PatientsName", appointmentInfo.PatientsName);
                     cmd.Parameters.AddWithValue("@EnquiryFor", !string.IsNullOrEmpty(appointmentInfo.EnquiryFor) ? appointmentInfo.EnquiryFor : "");
